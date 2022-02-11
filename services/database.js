@@ -1,11 +1,8 @@
 const { Pool } = require('pg');
 
 const database = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'twatter',
-  password: 'cathri2004',
-  port: 5432
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.IS_LOCAL ? undefined : { rejectUnauthorized: false },
 });
 
 function getTweets() {
